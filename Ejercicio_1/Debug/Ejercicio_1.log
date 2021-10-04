@@ -1,0 +1,16 @@
+﻿  MyForm.cpp
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(1,10): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(401,21): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(416,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(439,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(472,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(494,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(516,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(533,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(558,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(585,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(612,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\MyForm.h(638,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\List.h(135): warning C4715: 'List::GetItem': no todas las rutas de acceso de control devuelven un valor
+  MyForm.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
+  Ejercicio_1.vcxproj -> C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio_1.exe

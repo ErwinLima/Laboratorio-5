@@ -1,0 +1,5 @@
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio_1.vcxprojAssemblyReference.cache
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio1.MyForm.resources
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio_1.vcxproj.GenerateResource.cache
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio_1.exe
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio_1\Debug\Ejercicio_1.pdb
