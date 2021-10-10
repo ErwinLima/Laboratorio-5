@@ -1,7 +1,7 @@
 ﻿  MyForm.cpp
 C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\MyForm.h(2,10): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\MyForm.h(1438,20): warning C4101: 'e': variable local sin referencia
-C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\MyForm.h(1562,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\MyForm.h(1354,20): warning C4101: 'e': variable local sin referencia
+C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\MyForm.h(1520,20): warning C4101: 'e': variable local sin referencia
 C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\List.h(57): warning C4715: 'List::GetNumero': no todas las rutas de acceso de control devuelven un valor
 C:\Users\andre\Documents\Cursos U\Cuarto ciclo 2021\PROGRA AVZ\Lab5_Erwin_Lima_1158120\Ejercicio 2\List.h(70): warning C4715: 'List::GetColor': no todas las rutas de acceso de control devuelven un valor
   MyForm.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo

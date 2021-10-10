@@ -44,7 +44,7 @@ public:
 	}
 
 	int GetNumero(int index) {
-		if (index >= 0 || index < Count()) {
+		if (index >= 0 && index < Count()) {
 			Node* temporal = header;
 			int pos = 0;
 			while (pos < index)
@@ -57,7 +57,7 @@ public:
 	}
 
 	char GetColor(int index) {
-		if (index >= 0 || index < Count()) {
+		if (index >= 0 && index < Count()) {
 			Node* temporal = header;
 			int pos = 0;
 			while (pos < index)
@@ -102,6 +102,21 @@ public:
 			pos = -1;
 		}
 		return pos;
+	}
+
+	int LastIndexOf(int item) {
+		Node* temporal = header;
+		int pos = 0, x = 0;
+		while (temporal != nullptr)
+		{
+			if (temporal->data == item) {
+				x = pos;
+			}
+			temporal = temporal->next;
+			pos++;
+
+		}
+		return x;
 	}
 
 	void RemoveAt(int index) {

@@ -108,7 +108,7 @@ public:
 	}
 
 	void SetItem(int index, int item) {
-		if (index > 0 || index < Count()) {
+		if (index > 0 && index < Count()) {
 			Node* temporal = header;
 			int pos = 0;
 			while (pos < index)
@@ -121,7 +121,7 @@ public:
 	}
 
 	int GetItem(int index) {
-		if (index >= 0 || index < Count()) {
+		if (index >= 0 && index < Count()) {
 			Node* temporal = header;
 			int pos = 0;
 
@@ -148,6 +148,7 @@ public:
 		}
 		return x;
 	}
+
 	bool Remove(int item) {
 		if (Contains(item)) {
 			int pos = IndexOf(item);

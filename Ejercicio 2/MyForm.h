@@ -386,6 +386,7 @@ namespace Ejercicio2 {
 			this->PerformLayout();
 
 		}
+		
 
 		void CrearMazo() {
 			for (int i = 1; i < 27; i++)
@@ -442,8 +443,7 @@ namespace Ejercicio2 {
 			origen->RemoveAt(p1);
 		}
 
-
-		void LLenarLista(ListBox^ x, List* y) {
+		void mostrarMazo(ListBox^ x, List* y) {
 			x->Items->Clear();
 			int i = y->Count() - 1;
 			int ascii = y->GetColor(i);
@@ -457,6 +457,79 @@ namespace Ejercicio2 {
 			x->Items->Add(datos);
 		}
 
+		void LLenarLista(ListBox^ x, List* y) {
+			x->Items->Clear();
+			for (int i = 0; i < y->Count(); i++)
+			{
+				int ascii = y->GetColor(i);
+				String^ datos;
+				if (ascii == 82) {
+					datos = Convert::ToString(y->GetNumero(i)) + "R";
+				}
+				else {
+					datos = Convert::ToString(y->GetNumero(i)) + "N";
+				}
+				x->Items->Add(datos);
+			}
+		}
+
+		void LlenarPilas(List* lst, int n) {
+			Random^ aleatorio = gcnew Random();
+			for (int i = 0; i < n; i++)
+			{
+				int pos = aleatorio->Next(0, Mazo->Count());
+				int number = Mazo->GetNumero(pos);
+				char color = Mazo->GetColor(pos);
+				if (i == 0)
+				{
+					lst->Add(number, color);
+					Mazo->RemoveAt(pos);
+				}
+				else {
+					if (lst->GetNumero(i-1) != 1)
+					{						
+						for (int j = lst->GetNumero(i - 1) - 1; j > 0; j--)
+						{
+							int pos1 = Mazo->IndexOf(j);
+							int pos2 = Mazo->LastIndexOf(j);
+							if (pos1 != pos2)
+							{
+								if (pos1 != -1)
+								{
+									if (Verificar(Mazo, lst, pos1, i - 1))
+									{
+										Movimiento(Mazo, lst, pos1);
+										j = 0;
+									}
+								}
+								else if (pos2 != -1)
+								{
+									if (Verificar(Mazo, lst, pos2, i - 1))
+									{
+										Movimiento(Mazo, lst, pos2);
+										j = 0;
+									}
+								}
+							}
+							else {
+								if (pos1 != -1)
+								{
+									if (Verificar(Mazo, lst, pos1, i - 1))
+									{
+										Movimiento(Mazo, lst, pos1);
+										j = 0;
+									}
+								}
+							}
+						}
+					}
+					else {
+						i = n;
+					}
+				}
+			}
+		}
+
 		void RepartirCartas() {
 			CrearMazo();
 			Random^ aleatorio = gcnew Random();
@@ -467,177 +540,17 @@ namespace Ejercicio2 {
 			Mazo->RemoveAt(pos);			
 
 			/*------------------Se llena la pila 2------------------*/
-			for (int i = 0; i < 2; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);
-				if (i == 0)
-				{
-					g2->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}				
-				else if (i > 0 && Verificar(Mazo, g2, p, 0)) {
-					Movimiento(Mazo, g2, p);
-				}
-				else {
-					i--;
-				}
-			}
+			LlenarPilas(g2, 2);
 			/*------------------Se llena la pila 3------------------*/
-			for (int i = 0; i < 3; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);				
-				if (i == 0) {
-					g3->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}								
-				else {
-					int x = n - 1;
-					int posicion = g3->IndexOf(x);
-					if (posicion != -1)
-					{
-						if (g3->GetNumero(i - 1) != 1 && (g3->GetColor(i - 1) != Mazo->GetColor(posicion))) {
-							if (i > 0 && Verificar(Mazo, g3, p, i - 1)) {
-								Movimiento(Mazo, g3, p);
-							}
-							else {
-								i--;
-							}
-						}
-						else {
-							i = 3;
-						}
-					}
-					else {
-						i--;
-					}
-				}
-			}
-			
+			LlenarPilas(g3, 3);
 			/*------------------Se llena la pila 4------------------*/
-			for (int i = 0; i < 4; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);
-				if (i == 0) {
-					g4->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}
-				else {
-					int x = n - 1;
-					int posicion = g4->IndexOf(x);
-					if (posicion != -1)
-					{
-						if (g4->GetNumero(i - 1) != 1 && (g4->GetColor(i - 1) != Mazo->GetColor(posicion))) {
-							if (i > 0 && Verificar(Mazo, g4, p, i - 1)) {
-								Movimiento(Mazo, g4, p);
-							}
-							else {
-								i--;
-							}
-						}
-						else {
-							i = 4;
-						}
-					}
-				}
-			}
-
+			LlenarPilas(g4, 4);
 			/*------------------Se llena la pila 5------------------*/
-			for (int i = 0; i < 5; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);
-				int x = n - 1;
-				if (i == 0) {
-					g5->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}
-				else {
-					int x = n - 1;
-					int posicion = g5->IndexOf(x);
-					if (posicion != -1)
-					{
-						if (g5->GetNumero(i - 1) != 1 && (g5->GetColor(i - 1) != Mazo->GetColor(posicion))) {
-							if (i > 0 && Verificar(Mazo, g5, p, i - 1)) {
-								Movimiento(Mazo, g5, p);
-							}
-							else {
-								i--;
-							}
-						}
-						else {
-							i = 5;
-						}
-					}
-				}
-			}
-
+			LlenarPilas(g5, 5);
 			/*------------------Se llena la pila 6------------------*/
-			for (int i = 0; i < 6; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);
-				if (i == 0) {
-					g6->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}
-				else {
-					int x = n - 1;
-					int posicion = g6->IndexOf(x);
-					if (posicion != -1)
-					{
-						if (g5->GetNumero(i - 1) != 1 && (g6->GetColor(i - 1) != Mazo->GetColor(posicion))) {
-							if (i > 0 && Verificar(Mazo, g6, p, i - 1)) {
-								Movimiento(Mazo, g6, p);
-							}
-							else {
-								i--;
-							}
-						}
-						else {
-							i = 6;
-						}
-					}
-				}
-			}
-
+			LlenarPilas(g6, 6);
 			/*------------------Se llena la pila 7------------------*/
-			for (int i = 0; i < 7; i++)
-			{
-				int p = aleatorio->Next(0, Mazo->Count());
-				int n = Mazo->GetNumero(pos);
-				char c = Mazo->GetColor(pos);
-				if (i == 0) {
-					g7->Add(n, c);
-					Mazo->RemoveAt(pos);
-				}
-				else {
-					int x = n - 1;
-					int posicion = g7->IndexOf(x);
-					if (posicion != -1)
-					{
-						if (g5->GetNumero(i - 1) != 1 && (g7->GetColor(i - 1) != Mazo->GetColor(posicion))) {
-							if (i > 0 && Verificar(Mazo, g7, p, i - 1)) {
-								Movimiento(Mazo, g7, p);
-							}
-							else {
-								i--;
-							}
-						}
-						else {
-							i = 7;
-						}
-					}
-				}
-			}
-			
+			LlenarPilas(g7, 7);
 		}
 
 		void Ganar() {
@@ -646,13 +559,15 @@ namespace Ejercicio2 {
 					"Felicidades",
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Information);
-			}
+				btnMazo->Enabled = false;
+				btn_Mover->Enabled = false;
+			}			
 		}
 
 #pragma endregion
 	private: System::Void btn_Repartir_Click(System::Object^ sender, System::EventArgs^ e) {
 		RepartirCartas();
-		LLenarLista(lstMazo, Mazo);
+		mostrarMazo(lstMazo, Mazo);
 		LLenarLista(lstG1, g1);
 		LLenarLista(lstG2, g2);
 		LLenarLista(lstG3, g3);
@@ -668,6 +583,7 @@ private: System::Void btn_Mover_Click(System::Object^ sender, System::EventArgs^
 		int origen = Convert::ToInt32(txtOrigen->Text);
 		int destino = Convert::ToInt32(txtDestino->Text);
 		int posicion = Convert::ToInt32(txtPosicion->Text);
+		//Switch que determinará la pila de origen
 		switch (origen)
 		{
 		case 1:
@@ -1425,7 +1341,7 @@ private: System::Void btn_Mover_Click(System::Object^ sender, System::EventArgs^
 				MessageBoxIcon::Exclamation);
 			break;
 		}
-		LLenarLista(lstMazo, Mazo);
+		mostrarMazo(lstMazo, Mazo);
 		LLenarLista(lstG1, g1);
 		LLenarLista(lstG2, g2);
 		LLenarLista(lstG3, g3);
@@ -1447,93 +1363,135 @@ private: System::Void btnMazo_Click(System::Object^ sender, System::EventArgs^ e
 	try
 	{
 		int destino = Convert::ToInt32(txtDestino->Text);
-		if (Mazo->Count() > 0)
+		if (Mazo->Count() > 0)//Se verifica que el mazo no este vacío
 		{
-			switch (destino)
+			switch (destino)//Se utiliza un switch para determinar la pila destino
 			{
 			case 1:
-				if (Verificar(Mazo, g1, Mazo->Count() - 1, g1->Count() - 1))
+				if (g1->Count() == 0)
 				{
 					Movimiento(Mazo, g1, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
+					if (Verificar(Mazo, g1, Mazo->Count() - 1, g1->Count() - 1))
+					{
+						Movimiento(Mazo, g1, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
 				}
 				break;
 			case 2:
-				if (Verificar(Mazo, g2, Mazo->Count() - 1, g2->Count() - 1))
+				if (g2->Count() == 0)
 				{
 					Movimiento(Mazo, g2, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g2, Mazo->Count() - 1, g2->Count() - 1))
+					{
+						Movimiento(Mazo, g2, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			case 3:
-				if (Verificar(Mazo, g3, Mazo->Count() - 1, g3->Count() - 1))
+				if (g3->Count() == 0)
 				{
 					Movimiento(Mazo, g3, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g3, Mazo->Count() - 1, g3->Count() - 1))
+					{
+						Movimiento(Mazo, g3, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			case 4:
-				if (Verificar(Mazo, g4, Mazo->Count() - 1, g4->Count() - 1))
+				if (g4->Count() == 0)
 				{
 					Movimiento(Mazo, g4, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g4, Mazo->Count() - 1, g4->Count() - 1))
+					{
+						Movimiento(Mazo, g4, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			case 5:
-				if (Verificar(Mazo, g5, Mazo->Count() - 1, g5->Count() - 1))
+				if (g5->Count() == 0)
 				{
 					Movimiento(Mazo, g5, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g5, Mazo->Count() - 1, g5->Count() - 1))
+					{
+						Movimiento(Mazo, g5, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			case 6:
-				if (Verificar(Mazo, g6, Mazo->Count() - 1, g6->Count() - 1))
+				if (g6->Count() == 0)
 				{
 					Movimiento(Mazo, g6, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g6, Mazo->Count() - 1, g6->Count() - 1))
+					{
+						Movimiento(Mazo, g6, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			case 7:
-				if (Verificar(Mazo, g7, Mazo->Count() - 1, g7->Count() - 1))
+				if (g7->Count() == 0)
 				{
 					Movimiento(Mazo, g7, Mazo->Count() - 1);
 				}
 				else {
-					MessageBox::Show("No se pudo tomar la carta del mazo",
-						"Error",
-						MessageBoxButtons::OK,
-						MessageBoxIcon::Exclamation);
-				}
+					if (Verificar(Mazo, g7, Mazo->Count() - 1, g7->Count() - 1))
+					{
+						Movimiento(Mazo, g7, Mazo->Count() - 1);
+					}
+					else {
+						MessageBox::Show("No se pudo tomar la carta del mazo",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Exclamation);
+					}
+				}				
 				break;
 			default:
 				MessageBox::Show("Grupo destino no válido",
@@ -1542,7 +1500,7 @@ private: System::Void btnMazo_Click(System::Object^ sender, System::EventArgs^ e
 					MessageBoxIcon::Exclamation);
 				break;
 			}
-			LLenarLista(lstMazo, Mazo);
+			mostrarMazo(lstMazo, Mazo);
 			LLenarLista(lstG1, g1);
 			LLenarLista(lstG2, g2);
 			LLenarLista(lstG3, g3);
@@ -1550,7 +1508,7 @@ private: System::Void btnMazo_Click(System::Object^ sender, System::EventArgs^ e
 			LLenarLista(lstG5, g5);
 			LLenarLista(lstG6, g6);
 			LLenarLista(lstG7, g7);
-			Ganar();
+			Ganar();//Luego de cada movimiento se verifican las condiciones para ganar.
 		}
 		else {
 			MessageBox::Show("El mazo esta vacio",
